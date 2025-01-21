@@ -88,7 +88,11 @@ until first transaction is completed
 @Transactional(isolation=Isolation.SERIALIZABLE)
 public void transfer(String fromAcct, String toAcct, double amount){}
 ```
-- READ_UNCOMMITTED,READ_COMMITTED,REPEATABLE_READ,SERIALIZABLE
+Levels of isolation (increasing strictness):
+- Read Uncommitted: Transactions can see uncommitted changes from others.
+- Read Committed: Transactions only see committed data.
+- Repeatable Read: Ensures repeated reads of the same data return the same results within a transaction.
+- Serializable: Ensures complete isolation by executing transactions one at a time (most strict).
 
 
 
