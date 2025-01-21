@@ -74,7 +74,7 @@ until first transaction is completed
 ## Conditional updates
 - To be added
 ## Transactions
-- Operations must either be fully complete or not done at all (Atomicity)
+- Related operations must either be fully complete or not done at all (Atomicity)
 - At end of transaction - Either **Commit** or **Rollback**
 - Multiple transactions can occur independently and concurrently (Isolation) - operations are not visible to others
 - Must be ACID
@@ -94,5 +94,6 @@ Levels of isolation (increasing strictness):
 - Repeatable Read: Ensures repeated reads of the same data return the same results within a transaction.
 - Serializable: Ensures complete isolation by executing transactions one at a time (most strict).
 
-
+### OLTP - online transaction processing
+- To complete
 
