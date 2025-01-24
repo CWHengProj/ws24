@@ -22,3 +22,5 @@ constraint pk_id primary key (id),
 constraint fk_order_id foreign key (order_id) references orders(order_id)
 );
 
+grant all privileges on orders to 'cw'@'%';
+flush privileges;
