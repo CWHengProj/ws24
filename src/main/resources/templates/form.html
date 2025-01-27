@@ -3,9 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Orders</title>
 </head>
 <body>
-    
+    <div>
+        <h3>Orders</h3>
+        <form th:action="@{/submit}" th:object="${order}" method="post">
+            <!-- TODO: add the autoincremented orders to display here -->
+            <label for="order_date">Order Date:</label>
+            <input type="date" th:field="*{order_date}"><br>
+            <label for="customer_name">Customer name:</label>
+            <input type="text" th:field="*{customer_name}"><br>
+            <label for="ship_address">Ship Address:</label>
+            <input type="text" th:field="*{ship_address}"><br>
+            <label for="notes">Notes:</label>
+            <input type="text" th:field="*{notes}"><br>
+            <label for="tax">Tax:</label>
+            <input type="number" th:field="*{tax}"><br>
+
+            <button type="button">Submit</button><br>
+            <button type="reset">Reset</button><br>
+        </form>
+        <button onclick="addOrderForm()">Add new order</button>
+    </div>
+
+    <script>
+        let orderCount = 0;
+        function addOrderForm() {
+        const template = document.getElementById('orderTemplate').innerHTML;
+        const newOrder = template.replace(/name="/g, `name="orders[${orderCount}].`);
+        document.getElementById('ordersContainer').insertAdjacentHTML('beforeend', newOrder);
+        orderCount++;
+        }
+    </script>
+    <div>
+        <h1>Order Details</h1>
+        <form>
+            <label for="order"
+        </form>
+    </div>    
 </body>
 </html>

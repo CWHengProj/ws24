@@ -1,34 +1,39 @@
 package com.ws24.ws24.Model;
 
+import java.sql.Date;
+import java.util.List;
+
 public class Order {
-    private String order_id;
-    private String order_date;
+    private Integer order_id;
+    private Date order_date;
     private String customer_name;
     private String ship_address;
     private String notes;
-    private String tax;
+    private Float tax;
+    private List<OrderDetails> orderDetailsList;
 
-    public Order(String order_id, String order_date, String customer_name, String ship_address, String notes,
-            String tax) {
+    public Order(Integer order_id, Date order_date, String customer_name, String ship_address, String notes, Float tax,
+            List<OrderDetails> orderDetailsList) {
         this.order_id = order_id;
         this.order_date = order_date;
         this.customer_name = customer_name;
         this.ship_address = ship_address;
         this.notes = notes;
         this.tax = tax;
+        this.orderDetailsList = orderDetailsList;
     }
     public Order() {
     }
-    public String getOrder_id() {
+    public Integer getOrder_id() {
         return order_id;
     }
-    public void setOrder_id(String order_id) {
+    public void setOrder_id(Integer order_id) {
         this.order_id = order_id;
     }
-    public String getOrder_date() {
+    public Date getOrder_date() {
         return order_date;
     }
-    public void setOrder_date(String order_date) {
+    public void setOrder_date(Date order_date) {
         this.order_date = order_date;
     }
     public String getCustomer_name() {
@@ -49,14 +54,18 @@ public class Order {
     public void setNotes(String notes) {
         this.notes = notes;
     }
-    public String getTax() {
+    public Float getTax() {
         return tax;
     }
-    public void setTax(String tax) {
+    public void setTax(Float tax) {
         this.tax = tax;
     }
-
-    
+    public List<OrderDetails> getOrderDetailsList() {
+        return orderDetailsList;
+    }
+    public void setOrderDetailsList(List<OrderDetails> orderDetailsList) {
+        this.orderDetailsList = orderDetailsList;
+    }
 
     
 }
