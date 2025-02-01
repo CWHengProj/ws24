@@ -31,14 +31,11 @@ public class OrderController {
     @PostMapping("")
     public ModelAndView postMethodName(@ModelAttribute Order order) {
         ModelAndView mav = new ModelAndView("results");
-        String results= "";
-        try{
+        String results = "Successfully added!";
+        try {
             orderService.addOrder(order);
-            results = "Successfully added!";
-        }
-        catch (RuntimeException e){
+        } catch (Exception e) {
             results = "Something went wrong..\n" +e.getMessage();
-        
         }
         mav.addObject("results",results);
         return mav;

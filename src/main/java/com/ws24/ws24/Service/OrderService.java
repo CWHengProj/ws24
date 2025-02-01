@@ -18,7 +18,7 @@ public class OrderService {
     @Autowired
     OrderDetailsRepo orderDetailsRepo;
     @Transactional
-    public void addOrder(Order order){
+    public void addOrder(Order order) throws Exception{
         int orderId = orderRepo.addOrderGetOrderID(order);
 
         List<OrderDetails> od = order.getOrderDetailsList();

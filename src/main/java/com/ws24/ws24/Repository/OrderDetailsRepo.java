@@ -26,8 +26,6 @@ public class OrderDetailsRepo {
             if (i<1){
                 throw new Exception("Something went wrong with inserting Order Details.");
             }
-        }
-        
+        }   
     }
-    
 }

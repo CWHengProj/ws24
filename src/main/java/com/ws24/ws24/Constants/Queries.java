@@ -2,9 +2,22 @@ package com.ws24.ws24.Constants;
 
 public class Queries {
     public static final String updateOrder="""
-            adds a new order entry if the id is new
+            insert into orders
+            (order_date,
+            customer_name,
+            ship_address,
+            notes,
+            tax)
+            values
+            (?,?,?,?,?)
             """;
     public static final String updateOrderDetails="""
-            adds order details, that have the foreign key that points to the order entry
+                insert into order_details
+                (product,
+                unit_price,
+                discount,
+                quantity,
+                order_id) 
+                values (?,?,?,?,?)
             """;
 }

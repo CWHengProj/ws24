@@ -3,7 +3,6 @@ package com.ws24.ws24.Repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ws24.ws24.Constants.Queries;
 import com.ws24.ws24.Model.Order;
-import com.ws24.ws24.Model.OrderDetails;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -24,9 +22,7 @@ public class OrderRepo {
     JdbcTemplate template;
     @Transactional
     public int addOrderGetOrderID(Order order) {
-        List<OrderDetails> orderDetails = order.getOrderDetailsList();
         KeyHolder kh = new GeneratedKeyHolder();
-
         PreparedStatementCreator psc = new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) throws SQLException{
