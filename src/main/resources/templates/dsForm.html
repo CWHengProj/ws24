@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Order</title>
+    <style>
+        .detail-row { margin-bottom: 10px; padding: 5px; border: 1px solid #ddd; }
+        .remove-btn { color: red; cursor: pointer; margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <div>
+        <h3>Create New Order</h3>
+        <form th:action="@{/order}" th:object="${order}" method="post">
+            <!-- Order Fields -->
+            <div>
+                <label for="customerName">Customer name:</label>
+                <input type="text" id="customerName" th:field="*{customer_name}" required>
+            </div>
+            <div>
+                <label for="order_date">Order Date:</label>
+                <input type="date" th:field="*{order_date}"><br>
+            </div>
+            <div>
+                <label for="shipAddress">Ship Address:</label>
+                <input type="text" id="shipAddress" th:field="*{ship_address}" required>
+            </div>
+            <div>
+                <label for="notes">Notes:</label>
+                <textarea id="notes" th:field="*{notes}"></textarea>
+            </div>
+            <div>
+                <label for="tax">Tax:</label>
+                <input type="number" id="tax" th:field="*{tax}" step="0.01" min="0" max="1" value="0.05">
+            </div>
+
+            <!-- Order Details Section -->
+            <h3>Order Details</h3>
+            <div id="orderDetails">
+                <div class="detail-row" th:each="detail, iterStat : *{orderDetailsList}">
+                    <div>
+                        <label>Product:</label>
+                        <input type="text" th:field="*{orderDetailsList[__${iterStat.index}__].product}" required>
+                    </div>
+                    <div>
+                        <label>Unit Price:</label>
+                        <input type="number" th:field="*{orderDetailsList[__${iterStat.index}__].unit_price}" step="0.01" min="0" required>
+                    </div>
+                    <div>
+                        <label>Discount:</label>
+                        <input type="number" th:field="*{orderDetailsList[__${iterStat.index}__].discount}" step="0.01" min="0" max="1" value="1.0">
+                    </div>
+                    <div>
+                        <label>Quantity:</label>
+                        <input type="number" th:field="*{orderDetailsList[__${iterStat.index}__].quantity}" min="1" value="1" required>
+                    </div>
+                    <span class="remove-btn" onclick="removeDetailRow(this)">✕ Remove</span>
+                </div>
+            </div>
+
+            <button type="button" onclick="addDetailRow()">Add Product</button>
+            <div style="margin-top: 20px;">
+                <button type="submit">Create Order</button>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let detailIndex = 1;
+
+        function addDetailRow() {
+        const container = document.getElementById("orderDetails");
+        const index = container.children.length;
+
+        const newRow = document.createElement("div");
+        newRow.className = "detail-row";
+        newRow.innerHTML = `
+            <div>
+                <label>Product:</label>
+                <input type="text" name="orderDetailsList[${index}].product" required>
+            </div>
+            <div>
+                <label>Unit Price:</label>
+                <input type="number" name="orderDetailsList[${index}].unit_price" step="0.01" min="0" required>
+            </div>
+            <div>
+                <label>Discount:</label>
+                <input type="number" name="orderDetailsList[${index}].discount" step="0.01" min="0" max="1">
+            </div>
+            <div>
+                <label>Quantity:</label>
+                <input type="number" name="orderDetailsList[${index}].quantity" min="1" required>
+            </div>
+            <span class="remove-btn" onclick="removeDetailRow(this)">✕ Remove</span>
+        `;
+
+        container.appendChild(newRow);
+        }
+
+
+        function removeDetailRow(button) {
+            const row = button.closest('.detail-row');
+            if (document.querySelectorAll('.detail-row').length > 1) {
+                row.remove();
+            }
+        }
+
+        // Add initial row
+        addDetailRow();
+    </script>
+</body>
+</html>
