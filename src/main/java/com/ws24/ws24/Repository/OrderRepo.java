@@ -27,7 +27,8 @@ public class OrderRepo {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) throws SQLException{
                 PreparedStatement ps = con.prepareStatement(Queries.updateOrder, new String[] {"order_id"});
-                ps.setDate(1, order.getOrder_date());
+                //TODO: parsing of localDate
+                ps.setDate(1, java.sql.Date.valueOf(order.getOrder_date()));
                 ps.setString(2, order.getCustomer_name());
                 ps.setString(3,order.getShip_address());
                 ps.setString(4,order.getNotes());

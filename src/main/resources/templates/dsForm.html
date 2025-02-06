@@ -14,6 +14,10 @@
         <h3>Create New Order</h3>
         <form th:action="@{/order}" th:object="${order}" method="post">
             <!-- Order Fields -->
+            <label for="registration">Who is this for?</label>
+            <select id="registration" th:field="*{toWho}">
+                <option th:each="user:${registrationList}" th:text="${user}" th:value="${user}"></option>
+            </select>
             <div>
                 <label for="customerName">Customer name:</label>
                 <input type="text" id="customerName" th:field="*{customer_name}" required>

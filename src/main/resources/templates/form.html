@@ -9,7 +9,7 @@
     <div>
         <h3>Orders</h3>
         <form th:action="@{/submit}" th:object="${order}" method="post">
-            <!-- TODO: add the autoincremented orders to display here -->
+
             <label for="order_date">Order Date:</label>
             <input type="date" th:field="*{order_date}"><br>
             <label for="customer_name">Customer name:</label>

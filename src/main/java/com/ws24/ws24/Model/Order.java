@@ -1,19 +1,22 @@
 package com.ws24.ws24.Model;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Order {
+    private String toWho;
     private Integer order_id;
-    private Date order_date;
+    private LocalDate order_date;
     private String customer_name;
     private String ship_address;
     private String notes;
     private Float tax;
     private List<OrderDetails> orderDetailsList;
-
-    public Order(Integer order_id, Date order_date, String customer_name, String ship_address, String notes, Float tax,
-            List<OrderDetails> orderDetailsList) {
+    public Order() {
+    }
+    public Order(String toWho, Integer order_id, LocalDate order_date, String customer_name, String ship_address,
+            String notes, Float tax, List<OrderDetails> orderDetailsList) {
+        this.toWho = toWho;
         this.order_id = order_id;
         this.order_date = order_date;
         this.customer_name = customer_name;
@@ -22,7 +25,11 @@ public class Order {
         this.tax = tax;
         this.orderDetailsList = orderDetailsList;
     }
-    public Order() {
+    public String getToWho() {
+        return toWho;
+    }
+    public void setToWho(String toWho) {
+        this.toWho = toWho;
     }
     public Integer getOrder_id() {
         return order_id;
@@ -30,10 +37,10 @@ public class Order {
     public void setOrder_id(Integer order_id) {
         this.order_id = order_id;
     }
-    public Date getOrder_date() {
+    public LocalDate getOrder_date() {
         return order_date;
     }
-    public void setOrder_date(Date order_date) {
+    public void setOrder_date(LocalDate order_date) {
         this.order_date = order_date;
     }
     public String getCustomer_name() {
